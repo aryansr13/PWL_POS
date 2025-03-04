@@ -9,10 +9,7 @@ class UserModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'm_user';
-    protected $primaryKey = 'user_id';
+    protected $table = 'm_user'; 
 
-
-
-    protected $fillable = ['level_id', 'username', 'nama', ];
+    protected $fillable = ['username', 'nama', 'password', 'level_id']; // Pastikan 'password' ada di sini
 }
