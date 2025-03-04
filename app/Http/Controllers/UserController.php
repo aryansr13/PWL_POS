@@ -10,16 +10,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = [
-            'level_id' => 2,
-            'username' => 'manager_tiga',
-            'nama' => 'Manager 3',
-            'password' => Hash::make('12345')
-        ];
-
-        UserModel::create($data);
-
-        $user = UserModel::all();
-        return view('User', ['data' => $user]);
+        $user = UserModel::findOr(21, ['username', 'nama'], function (){
+            abort(404);
+        });
+        return view('user', ['data' => $user]);
     }
+    
 }
