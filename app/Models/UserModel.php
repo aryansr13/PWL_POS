@@ -11,5 +11,5 @@ class UserModel extends Model
 
     protected $table = 'm_user'; 
 
-    protected $fillable = ['username', 'nama', 'password', 'level_id']; // Pastikan 'password' ada di sini
+    protected $fillable = ['username', 'nama', 'password', 'level_id']; 
 }
