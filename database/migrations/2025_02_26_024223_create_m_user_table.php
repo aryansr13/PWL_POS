@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password',255);
             $table->timestamps();
 
-            $table->foreign('level_id')->references('level_id')->on('m_level')->onDelete('cascade');
+            $table->foreign('level_id')->references('level_id')->on('m_level');
         });
     }
 
