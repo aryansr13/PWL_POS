@@ -29,7 +29,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/ajax', [UserController::class, 'store_ajax']); // menyimpan data user baru
     Route::get('/{id}', [UserController::class, 'show']); // menampilkan detail user
     Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']); // menampilkan halaman form edit user
-    Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']); // menyimpan perubahan data user
+    Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']);// menyimpan perubahan data user
+    Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']);
+    Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']);
     Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
 });
 
