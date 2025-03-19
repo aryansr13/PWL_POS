@@ -14,9 +14,9 @@ class SupplierSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['nama_supplier' => 'PT Gadget Malang', 'alamat' => 'Malang'],
-            ['nama_supplier' => 'Makanan Sehat', 'alamat' => 'Sidoarjo'],
-            ['nama_supplier' => 'Toko Olahraga', 'alamat' => 'Bojonegoro'],
+            ['supplier_kode'=>'777','supplier_nama' => 'PT Gadget Malang', 'supplier_alamat' => 'Malang'],
+            ['supplier_kode'=>'778','supplier_nama' => 'Makanan Sehat', 'supplier_alamat' => 'Sidoarjo'],
+            ['supplier_kode'=>'779','supplier_nama' => 'Toko Olahraga', 'supplier_alamat' => 'Bojonegoro'],
         ];
         DB::table('m_supplier')->insert($data);
     }

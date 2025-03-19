@@ -1,4 +1,4 @@
-@empty($user)
+@empty($level)
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,55 +12,37 @@
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!!!</h5>
                     Data yang Anda cari tidak ditemukan.
                 </div>
-                <a href="{{ url('/user') }}" class="btn btn-warning">Kembali</a>
+                <a href="{{ url('/level') }}" class="btn btn-warning">Kembali</a>
             </div>
         </div>
     </div>
 @else
-    <form action="{{ url('/user/' . $user->user_id . '/update_ajax') }}" method="POST" id="form-edit">
+    <form action="{{ url('/level/' . $level->level_id . '/update_ajax') }}" method="POST" id="form-edit">
         @csrf
         @method('PUT')
 
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Data User</h5>
+                    <h5 class="modal-title">Edit Data level</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Level Pengguna</label>
-                        <select name="level_id" id="level_id" class="form-control" required>
-                            <option value="">- Pilih Level -</option>
-                            @foreach ($level as $l)
-                                <option value="{{ $l->level_id }}" {{ $l->level_id == $user->level_id ? 'selected' : '' }}>
-                                    {{ $l->level_nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <small id="error-level_id" class="error-text form-text text-danger"></small>
+                        <label>Level Kode</label>
+                        <input value="{{ $level->level_kode }}" type="text" name="level_kode" id="level_kode" class="form-control"
+                            required>
+                        <small id="error-level_kode" class="error-text form-text text-danger"></small>
                     </div>
-
                     <div class="form-group">
-                        <label>Username</label>
-                        <input value="{{ $user->username }}" type="text" name="username" id="username" class="form-control" required>
-                        <small id="error-username" class="error-text form-text text-danger"></small>
+                        <label>LevelNama</label>
+                        <input value="{{ $level->level_nama    }}" type="text" name="level_nama" id="level_nama" class="form-control"
+                            required>
+                        <small id="error-level_nama" class="error-text form-text text-danger"></small>
                     </div>
-
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input value="{{ $user->nama }}" type="text" name="nama" id="nama" class="form-control" required>
-                        <small id="error-nama" class="error-text form-text text-danger"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" id="password" class="form-control">
-                        <small class="form-text text-muted">Abaikan jika tidak ingin mengubah password</small>
-                        <small id="error-password" class="error-text form-text text-danger"></small>
-                    </div>
+    
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-warning">Batal</button>
@@ -74,24 +56,16 @@
         $(document).ready(function() {
             $("#form-edit").validate({
                 rules: {
-                    level_id: {
-                        required: true,
-                        number: true
-                    },
-                    username: {
+                    level_kode: {
                         required: true,
                         minlength: 3,
                         maxlength: 20
                     },
-                    nama: {
+                    level_nama: {
                         required: true,
                         minlength: 3,
                         maxlength: 100
                     },
-                    password: {
-                        minlength: 6,
-                        maxlength: 20
-                    }
                 },
                 submitHandler: function(form) {
                     $.ajax({
@@ -106,13 +80,13 @@
                                     title: 'Berhasil',
                                     text: response.message
                                 });
-                                dataUser.ajax.reload();
+                                datalevel.ajax.reload();
                             } else {
                                 $('.error-text').text('');
                                 $.each(response.msgField, function(prefix, val) {
                                     $('#error-' + prefix).text(val[0]);
                                 });
-                                Swal.fire({ 
+                                Swal.fire({
                                     icon: 'error',
                                     title: 'Terjadi Kesalahan',
                                     text: response.message
