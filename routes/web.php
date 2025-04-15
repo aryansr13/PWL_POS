@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/import', [SupplierController::class, 'import']); // menampilkan halaman form import Supplier
         Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); // menyimpan data Supplier dari file import
         Route::get('/export_excel', [BarangController::class,'export_excel']); // ajax export excel
-
+        Route::get('/export_pdf', [BarangController::class,'export_pdf']); // ajax export pdf
     });
     });
 });
