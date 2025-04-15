@@ -12,14 +12,12 @@ use function Laravel\Prompts\password;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
     public function index()
 {
-
-
-           
             
             $breadcrumb = (object) [
                 'title' => 'Daftar User',
@@ -307,7 +305,7 @@ class UserController extends Controller
         }
         return redirect('/');
     }
-
+   
     public function import() {
     return view('user.import');
     }
@@ -399,6 +397,7 @@ class UserController extends Controller
     
      return redirect('/');
     }
+    
     public function export_excel()
     {
         //Ambil value user yang akan diexport
@@ -452,5 +451,25 @@ class UserController extends Controller
 
         $writer->save('php://output'); //simpan file ke output
         exit; //keluar dari scriptA
+    }
+
+    public function export_pdf(){
+        $user = UserModel::select(
+            'level_id',
+            'username',
+            'nama',
+        )
+        ->orderBy('level_id')
+        ->orderBy('username')
+        ->with('level')
+        ->get();
+
+        // use Barryvdh\DomPDF\Facade\Pdf;
+        $pdf = PDF::loadView('user.export_pdf', ['user' => $user]);
+        $pdf->setPaper('A4', 'portrait'); // set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); // set true jika ada gambar dari url
+        $pdf->render(); // render pdf
+
+        return $pdf->stream('Data User '.date('Y-m-d H-i-s').'.pdf');
     }
 }        
