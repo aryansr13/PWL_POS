@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [LevelController::class, 'destroy']);
         Route::get('/import', [LevelController::class, 'import']); // menampilkan halaman form import Level
         Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // menyimpan data Level dari file import
+        Route::get('/export_excel', [LevelController::class,'export_excel']); // ajax export excel
     });
     });
 
@@ -52,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [UserController::class, 'destroy']);
         Route::get('/import', [UserController::class, 'import']); // menampilkan halaman form import User
         Route::post('/import_ajax', [UserController::class, 'import_ajax']); // menyimpan data User dari file import
+        Route::get('/export_excel', [UserController::class,'export_excel']); // ajax export excel
     });
     });
 
@@ -70,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [KategoriController::class, 'destroy']);
         Route::get('/import', [KategoriController::class, 'import']); // menampilkan halaman form import Kategori
         Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); // menyimpan data Kategori dari file import
+        Route::get('/export_excel', [KategoriController::class,'export_excel']); // ajax export excel
     });
     });
 
@@ -87,6 +90,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [SupplierController::class, 'destroy']);
         Route::get('/import', [SupplierController::class, 'import']); // menampilkan halaman form import Supplier
         Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); // menyimpan data Supplier dari file import
+        Route::get('/export_excel', [SupplierController::class,'export_excel']); // ajax export excel
     });
     });
 
