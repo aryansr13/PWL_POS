@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\BarangController;
+use App\Http\Controllers\Api\PenjualanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/logout', LogoutController::class)->name('logout');
 
 Route::post('/register1',RegisterController::class)->name('register1');
+
+Route::post('/penjualan', [PenjualanController::class, 'store']);
+Route::get('/penjualan/{penjualan}', [PenjualanController::class,'show']);
 
 //level
 Route::get('levels', [LevelController::class, 'index']);
