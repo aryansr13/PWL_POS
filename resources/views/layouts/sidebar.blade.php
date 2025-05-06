@@ -1,41 +1,16 @@
 <div class="sidebar">
     <div class="sidebar">
-
- 
-
-        <!-- Profile Picture -->
- 
-
+   <!-- Profile Picture -->
         <div class="user-panel d-flex align-items-center mt-3 mb-3">
- 
-
             <a href="{{ url('/profile') }}" class="image mb-2 position-relative">
- 
-
                     <img src="{{ asset('storage/profile/' . (Auth::user()->profile_photo ?? 'Foto.jpg')) }}"
- 
-
                         class="img-circle elevation-2"
- 
-
                         alt="User Image"
- 
-
                         style="width: 30px; height: 30px; object-fit: cover; border: 2px solid white;">
- 
-
             </a>
- 
-
             <div class="info">
- 
-
                 <span style="color:white">{{ Auth::user()->nama }}</span>
- 
-
             </div>
- 
-
         </div>
     <!-- Sidebar Search Form -->
     <div class="form-inline mt-2">
@@ -87,12 +62,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="{{ url('/supplier') }}" class="nav-link {{ ($activeMenu == 'supplier') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-truck"></i>
-                    <p>Data Supplier</p>
-                </a>
-            </li>
+           
 
             <li class="nav-header">Data Transaksi</li>
             <li class="nav-item">
@@ -107,6 +77,7 @@
                     <p>Transaksi Penjualan</p>
                 </a>
             </li>
+            
         </ul>
         @auth
         <button id="btn-logout" type="button" class="btn btn-danger btn-sm">Logout</button>

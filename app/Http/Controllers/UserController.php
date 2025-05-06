@@ -472,4 +472,9 @@ class UserController extends Controller
 
         return $pdf->stream('Data User '.date('Y-m-d H-i-s').'.pdf');
     }
+    public function show_ajax($id)
+    {
+        $user = UserModel::with('level')->find($id);
+        return view('user.show_ajax', compact('user'));
+    }
 }        
