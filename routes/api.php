@@ -64,3 +64,10 @@ Route::post('barangs', [BarangController::class, 'store']);
 Route::get('barangs/{barang}', [BarangController::class, 'show']);
 Route::put('barangs/{barang}', [BarangController::class, 'update']);
 Route::delete('barangs/{barang}', [BarangController::class, 'destroy']);
+
+//penjualan model
+Route::get('/penjualan', [PenjualanController::class, 'index']);
+Route::post('/penjualan', [PenjualanController::class, 'store']);
+Route::get('/penjualan/{penjualan}', [PenjualanController::class, 'show']);
+Route::put('/penjualan/{penjualan}', [PenjualanController::class, 'update']);
+Route::delete('/penjualan/{penjualan}', [PenjualanController::class,'destroy']);
